@@ -17,12 +17,21 @@ class Personas(models.Model):
     referencia = models.CharField(max_length=200)
     estaActivo =  models.BooleanField(default=True)
 
+    def __str__(self):
+        return self.nombres + " "+ self.apellido
+
+
 class TelefonoPersona(models.Model):
     telefono = models.CharField(max_length=15)
     persona = models.ForeignKey(Personas, on_delete=models.CASCADE, null=False, blank=False)
     estaActivo = models.BooleanField(default=True)
+    def __str__(self):
+        return self.telefono
 
 class CorreoPersona(models.Model):
     email = models.EmailField()
     persona = models.ForeignKey(Personas, on_delete=models.CASCADE, null=False, blank=False)
     estaActivo = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.email
